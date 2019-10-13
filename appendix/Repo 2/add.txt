@@ -1,0 +1,144 @@
+------------------------------------------------------------
+    ---> framework/modules/geronimo-kernel/src/main/java/org/apache/geronimo/kernel/repository/AbstractRepository.java
+------------------------------------------------------------
+  count ---> 4 commit ---> d8b8d4e8496cc8fc5b13833558bec61bdbda6ad1
+------------------------------------------------------------
+    ---> framework/modules/geronimo-kernel/src/main/java/org/apache/geronimo/kernel/util/InputUtils.java
+------------------------------------------------------------
+  count ---> 43 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> framework/modules/geronimo-security/src/main/java/org/apache/geronimo/security/keystore/FileKeystoreManager.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 4d1ef8887ffe20191b88cfaca780e9c5ad09ff8d
+------------------------------------------------------------
+  count ---> 4 commit ---> dc5f89dddfd40477c3eb3453e0cd598018058c88
+------------------------------------------------------------
+    ---> plugins/ca-helper/geronimo-ca-helper/pom.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> f0bfa16a8b6f281de842088b38a4fdec1fad454f
+------------------------------------------------------------
+  count ---> 5 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/ca-helper/geronimo-ca-helper/src/main/webapp/WEB-INF/web.xml
+------------------------------------------------------------
+  count ---> 14 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-base-portlets/src/main/webapp/WEB-INF/view/keystore/createKeystore.jsp
+------------------------------------------------------------
+  count ---> 3 commit ---> 18f0f18696b291961dd263e3adfc2e85cd7e144f
+------------------------------------------------------------
+  count ---> 1 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-base-portlets/src/main/webapp/WEB-INF/view/repository/normal.jsp
+------------------------------------------------------------
+  count ---> 2 commit ---> 18f0f18696b291961dd263e3adfc2e85cd7e144f
+------------------------------------------------------------
+  count ---> 7 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/LICENSE.txt
+------------------------------------------------------------
+  count ---> 203 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/NOTICE.txt
+------------------------------------------------------------
+  count ---> 2 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/pom.xml
+------------------------------------------------------------
+  count ---> 37 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/src/main/java/org/apache/geronimo/console/filter/FilterResponseWrapper.java
+------------------------------------------------------------
+  count ---> 169 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/src/main/java/org/apache/geronimo/console/filter/ResponseOutputStream.java
+------------------------------------------------------------
+  count ---> 67 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/src/main/java/org/apache/geronimo/console/filter/XSRFHandler.java
+------------------------------------------------------------
+  count ---> 259 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/src/main/java/org/apache/geronimo/console/filter/XSSHandler.java
+------------------------------------------------------------
+  count ---> 239 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/src/main/java/org/apache/geronimo/console/filter/XSSXSRFFilter.java
+------------------------------------------------------------
+  count ---> 134 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-filter/src/main/resources/XSRF.js
+------------------------------------------------------------
+  count ---> 54 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-portal-driver/pom.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> 18f0f18696b291961dd263e3adfc2e85cd7e144f
+------------------------------------------------------------
+  count ---> 5 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/console-portal-driver/src/main/webapp/WEB-INF/web.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> 18f0f18696b291961dd263e3adfc2e85cd7e144f
+------------------------------------------------------------
+  count ---> 12 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/console/pom.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/pom.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+  count ---> 6 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/java/org/apache/geronimo/monitoring/console/MonitoringPortlet.java
+------------------------------------------------------------
+  count ---> 4 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringAddGraph.jsp
+------------------------------------------------------------
+  count ---> 1 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringAddView.jsp
+------------------------------------------------------------
+  count ---> 2 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringEditGraph.jsp
+------------------------------------------------------------
+  count ---> 1 commit ---> ada9471c9ac4eaa1b1cb95b117aea461557101f4
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringEditView.jsp
+------------------------------------------------------------
+  count ---> 2 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/web.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+  count ---> 16 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/system-database/sysdb-portlets/src/main/java/org/apache/geronimo/console/internaldb/RunSQLHelper.java
+------------------------------------------------------------
+  count ---> 5 commit ---> 18f0f18696b291961dd263e3adfc2e85cd7e144f
+------------------------------------------------------------
+  count ---> 1 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/system-database/sysdb-portlets/src/main/webapp/WEB-INF/view/internaldb/runSQLNormal.jsp
+------------------------------------------------------------
+  count ---> 3 commit ---> 382583831f6e0e36c697c675f7e5a7b3475e560f
+------------------------------------------------------------
+  count ---> 5 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/welcome/geronimo-welcome/pom.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> 37a305c8bc3c76d391fc5bd3669e1be743f915ae
+------------------------------------------------------------
+  count ---> 5 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5
+------------------------------------------------------------
+    ---> plugins/welcome/geronimo-welcome/src/main/webapp/WEB-INF/web.xml
+------------------------------------------------------------
+  count ---> 1 commit ---> 37a305c8bc3c76d391fc5bd3669e1be743f915ae
+------------------------------------------------------------
+  count ---> 11 commit ---> f8a612df7b06729bfd6c826e1a110d4bb40dc1f5

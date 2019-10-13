@@ -1,0 +1,40 @@
+------------------------------------------------------------
+    ---> framework/modules/geronimo-kernel/src/main/java/org/apache/geronimo/kernel/repository/AbstractRepository.java
+------------------------------------------------------------
+  count ---> 1 commit ---> d8b8d4e8496cc8fc5b13833558bec61bdbda6ad1
+------------------------------------------------------------
+  count ---> 10 commit ---> cf13e4bbf9b78b8e256f25f61d1fc35391276219
+------------------------------------------------------------
+    ---> plugins/console/console-base-portlets/src/main/webapp/WEB-INF/view/repository/normal.jsp
+------------------------------------------------------------
+  count ---> 9 commit ---> 18f0f18696b291961dd263e3adfc2e85cd7e144f
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/java/org/apache/geronimo/monitoring/console/MonitoringPortlet.java
+------------------------------------------------------------
+  count ---> 4 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringAddGraph.jsp
+------------------------------------------------------------
+  count ---> 1 commit ---> 47932941ddeeb22cd635fb6a6eef21d553111c68
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringAddView.jsp
+------------------------------------------------------------
+  count ---> 2 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringEditGraph.jsp
+------------------------------------------------------------
+  count ---> 1 commit ---> ada9471c9ac4eaa1b1cb95b117aea461557101f4
+------------------------------------------------------------
+    ---> plugins/monitoring/mconsole-war/src/main/webapp/WEB-INF/view/monitoringEditView.jsp
+------------------------------------------------------------
+  count ---> 2 commit ---> 780d31605346d5d6d437a1196e6feb0b1304a1e6
+------------------------------------------------------------
+    ---> plugins/system-database/sysdb-portlets/src/main/webapp/WEB-INF/view/internaldb/runSQLNormal.jsp
+------------------------------------------------------------
+  count ---> 1 commit ---> 382583831f6e0e36c697c675f7e5a7b3475e560f
+------------------------------------------------------------
+    ---> plugins/welcome/geronimo-welcome/src/main/webapp/WEB-INF/web.xml
+------------------------------------------------------------
+  count ---> 6 commit ---> 37a305c8bc3c76d391fc5bd3669e1be743f915ae
+------------------------------------------------------------
+  count ---> 35 commit ---> 05dd566bc525a25adc2b10bcadb7d034b7f23fbe

@@ -1,0 +1,90 @@
+------------------------------------------------------------
+    ---> spring-web/src/main/java/org/springframework/web/accept/ContentNegotiationManagerFactoryBean.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 64d939bb16099fcb647850a5f3e04990f5562099
+------------------------------------------------------------
+    ---> spring-web/src/main/java/org/springframework/web/accept/PathExtensionContentNegotiationStrategy.java
+------------------------------------------------------------
+  count ---> 2 commit ---> f05e2bc56f8e03466977d73a5e99c37651248803
+------------------------------------------------------------
+    ---> spring-web/src/main/java/org/springframework/web/util/UrlPathHelper.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 04eaa47ec10ead550e166c6cdb8bc49f1a8910b3
+------------------------------------------------------------
+    ---> spring-web/src/main/java/org/springframework/web/util/WebUtils.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 2201dd8c45051230ad1a5a0e895cb5951edbfb74
+------------------------------------------------------------
+  count ---> 1 commit ---> 460977263de87b9e85fe7639fdcfbba96a81adc9
+------------------------------------------------------------
+  count ---> 2 commit ---> 04eaa47ec10ead550e166c6cdb8bc49f1a8910b3
+------------------------------------------------------------
+    ---> spring-web/src/test/java/org/springframework/http/converter/json/MappingJackson2HttpMessageConverterTests.java
+------------------------------------------------------------
+  count ---> 2 commit ---> 1338d46a6ed6595dc73f3cac675d7e6c04f17da1
+------------------------------------------------------------
+    ---> spring-web/src/test/java/org/springframework/web/accept/ContentNegotiationManagerFactoryBeanTests.java
+------------------------------------------------------------
+  count ---> 4 commit ---> 0d2aa51576d150ec95a81573e3b84d641366e214
+------------------------------------------------------------
+  count ---> 11 commit ---> 64d939bb16099fcb647850a5f3e04990f5562099
+------------------------------------------------------------
+  count ---> 2 commit ---> 8325b1008031b05a89d2d69819506d47ab1acfa0
+------------------------------------------------------------
+  count ---> 1 commit ---> 7b30ffd5222e41f703b9b48b30f562cca7a8f5cd
+------------------------------------------------------------
+    ---> spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractJsonpResponseBodyAdvice.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 1338d46a6ed6595dc73f3cac675d7e6c04f17da1
+------------------------------------------------------------
+    ---> spring-webmvc/src/main/java/org/springframework/web/servlet/view/json/MappingJackson2JsonView.java
+------------------------------------------------------------
+  count ---> 1 commit ---> e63ca04fdb1e01689d0d5c38ffae5991bde2ebd2
+------------------------------------------------------------
+  count ---> 1 commit ---> 5dc27ee134d28c7b25d0f6d3e9059f80c95d4402
+------------------------------------------------------------
+    ---> spring-webmvc/src/test/java/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapterTests.java
+------------------------------------------------------------
+  count ---> 3 commit ---> e65b930e7ad63b909bd2977bff806322477f8a91
+------------------------------------------------------------
+  count ---> 1 commit ---> 2799e710bc5a689e286a705b596ae41c1a8ceb54
+------------------------------------------------------------
+  count ---> 3 commit ---> 78470782d49055ffc60fcd21e2d2529d45673112
+------------------------------------------------------------
+  count ---> 2 commit ---> 1338d46a6ed6595dc73f3cac675d7e6c04f17da1
+------------------------------------------------------------
+  count ---> 2 commit ---> 51fc3b4aaf01a3d8f8f0f9ec98f5e5c1215cc096
+------------------------------------------------------------
+    ---> spring-webmvc/src/test/java/org/springframework/web/servlet/view/json/MappingJackson2JsonViewTests.java
+------------------------------------------------------------
+  count ---> 5 commit ---> e63ca04fdb1e01689d0d5c38ffae5991bde2ebd2
+------------------------------------------------------------
+  count ---> 1 commit ---> 05765d752062f37b202e7dfd20593c995dc47df0
+------------------------------------------------------------
+  count ---> 29 commit ---> 5dc27ee134d28c7b25d0f6d3e9059f80c95d4402
+------------------------------------------------------------
+  count ---> 1 commit ---> 777085bbfc47834b86c5edaea4c9bb479d77dd7c
+------------------------------------------------------------
+  count ---> 1 commit ---> be0b69cbf1377e3fa8d8abc94f24274f4d0945b2
+------------------------------------------------------------
+  count ---> 1 commit ---> c7e7e80a3ae9f6b4ed7f2d99fe321c2e12550d7b
+------------------------------------------------------------
+    ---> spring-websocket/src/main/java/org/springframework/web/socket/sockjs/support/AbstractSockJsService.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 48236be4a261377ec95806933414e66a6ec5fc96
+------------------------------------------------------------
+    ---> spring-websocket/src/main/java/org/springframework/web/socket/sockjs/transport/handler/AbstractHttpSendingTransportHandler.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 88447e503b1c0eeccceb2de28876af9bcd4db90f
+------------------------------------------------------------
+    ---> spring-websocket/src/main/java/org/springframework/web/socket/sockjs/transport/handler/JsonpPollingTransportHandler.java
+------------------------------------------------------------
+  count ---> 1 commit ---> 88447e503b1c0eeccceb2de28876af9bcd4db90f
+------------------------------------------------------------
+    ---> spring-websocket/src/test/java/org/springframework/web/socket/sockjs/transport/handler/HttpSendingTransportHandlerTests.java
+------------------------------------------------------------
+  count ---> 9 commit ---> 05084d504bca9351f39c949de45378ede28ff272
+------------------------------------------------------------
+  count ---> 2 commit ---> 60532cbd1eb4e1b5778653fec315407531e949a9
+------------------------------------------------------------
+  count ---> 1 commit ---> a03517fa353a37ac28e13be9d1869bdaa87cb652

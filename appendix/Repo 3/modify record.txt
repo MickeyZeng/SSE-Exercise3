@@ -1,0 +1,1 @@
+{'spring-security-oauth2/src/main/java/org/springframework/security/oauth2/provider/endpoint/AuthorizationEndpoint.java': {'insertions': 103, 'deletions': 18, 'lines': 121}, 'spring-security-oauth2/src/test/java/org/springframework/security/oauth2/provider/endpoint/AuthorizationEndpointTests.java': {'insertions': 134, 'deletions': 29, 'lines': 163}}

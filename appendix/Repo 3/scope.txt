@@ -1,0 +1,313 @@
+--- File: spring-security-oauth2/src/main/java/org/springframework/security/oauth2/provider/endpoint/AuthorizationEndpoint.java ---
+addlines[0] =  + * Copyright 2002-2018 the original author or authors.
+=>  * Copyright 2002-2018 the original author or authors. <=
+=> * <=
+=> * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with<=
+=> * the License. You may obtain a copy of the License at<=
+=> * <=
+=> * http://www.apache.org/licenses/LICENSE-2.0<=
+=> * <=
+=> * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on<=
+=> * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the<=
+=> * specific language governing permissions and limitations under the License.<=
+=> */<=
+=> import org.springframework.security.core.GrantedAuthority; <=
+=> import org.springframework.util.ObjectUtils; <=
+=> import java.net.URI; <=
+=> import java.security.Principal; <=
+=> import java.util.Collections; <=
+=> import java.util.Date; <=
+=> import java.util.HashMap; <=
+=> import java.util.HashSet; <=
+=> import java.util.LinkedHashMap; <=
+=> import java.util.Map; <=
+=> import java.util.Set; <=
+=>  <=
+=> @SessionAttributes({AuthorizationEndpoint.AUTHORIZATION_REQUEST_ATTR_NAME, AuthorizationEndpoint.ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME}) <=
+=> 	static final String AUTHORIZATION_REQUEST_ATTR_NAME = "authorizationRequest"; <=
+=>  <=
+=> 	static final String ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME = "org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint.ORIGINAL_AUTHORIZATION_REQUEST"; <=
+=> 			// Store authorizationRequest AND an immutable Map of authorizationRequest in session <=
+=> 			// which will be used to validate against in approveOrDeny() <=
+=> 			model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 			model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, unmodifiableMap(authorizationRequest)); <=
+=> 	Map<String, Object> unmodifiableMap(AuthorizationRequest authorizationRequest) { <=
+=> 		Map<String, Object> authorizationRequestMap = new HashMap<String, Object>(); <=
+=>  <=
+=> 		authorizationRequestMap.put(OAuth2Utils.CLIENT_ID, authorizationRequest.getClientId()); <=
+=> 		authorizationRequestMap.put(OAuth2Utils.STATE, authorizationRequest.getState()); <=
+=> 		authorizationRequestMap.put(OAuth2Utils.REDIRECT_URI, authorizationRequest.getRedirectUri()); <=
+=> 		if (authorizationRequest.getResponseTypes() != null) { <=
+=> 			authorizationRequestMap.put(OAuth2Utils.RESPONSE_TYPE, <=
+=> 					Collections.unmodifiableSet(new HashSet<String>(authorizationRequest.getResponseTypes()))); <=
+=> 		} <=
+=> 		if (authorizationRequest.getScope() != null) { <=
+=> 			authorizationRequestMap.put(OAuth2Utils.SCOPE, <=
+=> 					Collections.unmodifiableSet(new HashSet<String>(authorizationRequest.getScope()))); <=
+=> 		} <=
+=> 		authorizationRequestMap.put("approved", authorizationRequest.isApproved()); <=
+=> 		if (authorizationRequest.getResourceIds() != null) { <=
+=> 			authorizationRequestMap.put("resourceIds", <=
+=> 					Collections.unmodifiableSet(new HashSet<String>(authorizationRequest.getResourceIds()))); <=
+=> 		} <=
+=> 		if (authorizationRequest.getAuthorities() != null) { <=
+=> 			authorizationRequestMap.put("authorities", <=
+=> 					Collections.unmodifiableSet(new HashSet<GrantedAuthority>(authorizationRequest.getAuthorities()))); <=
+=> 		} <=
+=>  <=
+=> 		return Collections.unmodifiableMap(authorizationRequestMap); <=
+=> 	} <=
+=>  <=
+=>	@RequestMapping(value = "/oauth/authorize", method = RequestMethod.POST, params = OAuth2Utils.USER_OAUTH_APPROVAL)<=
+=>	public View approveOrDeny(@RequestParam Map<String, String> approvalParameters, Map<String, ?> model,<=
+=>			SessionStatus sessionStatus, Principal principal) {<=
+=> 		AuthorizationRequest authorizationRequest = (AuthorizationRequest) model.get(AUTHORIZATION_REQUEST_ATTR_NAME); <=
+=> 		// Check to ensure the Authorization Request was not modified during the user approval step <=
+=> 		@SuppressWarnings("unchecked") <=
+=> 		Map<String, Object> originalAuthorizationRequest = (Map<String, Object>) model.get(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME); <=
+=> 		if (isAuthorizationRequestModified(authorizationRequest, originalAuthorizationRequest)) { <=
+=> 			throw new InvalidRequestException("Changes were detected from the original authorization request."); <=
+=> 		} <=
+=>  <=
+=>		try {<=
+=>			Set<String> responseTypes = authorizationRequest.getResponseTypes();<=
+=> 	private boolean isAuthorizationRequestModified( <=
+=> 			AuthorizationRequest authorizationRequest, Map<String, Object> originalAuthorizationRequest) { <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getClientId(), <=
+=> 				originalAuthorizationRequest.get(OAuth2Utils.CLIENT_ID))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getState(), <=
+=> 				originalAuthorizationRequest.get(OAuth2Utils.STATE))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getRedirectUri(), <=
+=> 				originalAuthorizationRequest.get(OAuth2Utils.REDIRECT_URI))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getResponseTypes(), <=
+=> 				originalAuthorizationRequest.get(OAuth2Utils.RESPONSE_TYPE))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getScope(), <=
+=> 				originalAuthorizationRequest.get(OAuth2Utils.SCOPE))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.isApproved(), <=
+=> 				originalAuthorizationRequest.get("approved"))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getResourceIds(), <=
+=> 				originalAuthorizationRequest.get("resourceIds"))) { <=
+=> 			return true; <=
+=> 		} <=
+=> 		if (!ObjectUtils.nullSafeEquals( <=
+=> 				authorizationRequest.getAuthorities(), <=
+=> 				originalAuthorizationRequest.get("authorities"))) { <=
+=> 			return true; <=
+=> 		} <=
+=>  <=
+=> 		return false; <=
+=> 	} <=
+=>  <=
+=>	// We need explicit approval from the user.<=
+=>	private ModelAndView getUserApprovalPageResponse(Map<String, Object> model,<=
+=>			AuthorizationRequest authorizationRequest, Authentication principal) {<=
+=>		logger.debug("Loading user approval page: " + userApprovalPage);<=
+=>		model.putAll(userApprovalHandler.getUserApprovalRequest(authorizationRequest, principal));<=
+=>		return new ModelAndView(userApprovalPage, model);<=
+=> 				webRequest, AUTHORIZATION_REQUEST_ATTR_NAME); <=
+=>		if (authorizationRequest != null) {<=
+=>			return authorizationRequest;<=
+
+
+--- File: spring-security-oauth2/src/test/java/org/springframework/security/oauth2/provider/endpoint/AuthorizationEndpointTests.java ---
+addlines[0] =  + * Copyright 2006-2018 the original author or authors.
+=>  * Copyright 2006-2018 the original author or authors. <=
+=> * <=
+=> * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with<=
+=> * the License. You may obtain a copy of the License at<=
+=> * <=
+=> * http://www.apache.org/licenses/LICENSE-2.0<=
+=> * <=
+=> * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on<=
+=> * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the<=
+=> * specific language governing permissions and limitations under the License.<=
+=> */<=
+=> import static org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint.AUTHORIZATION_REQUEST_ATTR_NAME; <=
+=> import static org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint.ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME; <=
+=> import org.springframework.security.core.authority.AuthorityUtils; <=
+=> 		AuthorizationRequest request = getAuthorizationRequest("foo", "http://anywhere.com#bar", null, null, Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		assertEquals("http://anywhere.com?code=thecode#bar", ((RedirectView) result).getUrl());<=
+=> 		AuthorizationRequest request = getAuthorizationRequest("foo", "http://anywhere.com?foo=bar", null, null, Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		assertEquals("http://anywhere.com?foo=bar&code=thecode", ((RedirectView) result).getUrl());<=
+=> 		AuthorizationRequest request = getAuthorizationRequest("foo", "http://anywhere.com", " =?s", null, Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		assertEquals("http://anywhere.com?code=thecode&state=%20%3D?s", ((RedirectView) result).getUrl());<=
+=> 		AuthorizationRequest request = getAuthorizationRequest("foo", "http://anywhere.com?foo=bar&bar=foo", null, null, <=
+=> 				Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		assertEquals("http://anywhere.com?foo=bar&bar=foo&code=thecode", ((RedirectView) result).getUrl());<=
+=> 		AuthorizationRequest request = getAuthorizationRequest("foo", "http://anywhere.com?foo=b =&bar=f $", null, null, <=
+=> 				Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		String url = ((RedirectView) result).getUrl();<=
+=>		assertEquals("http://anywhere.com?foo=b%20=&bar=f%20$&code=thecode", url);<=
+=>		MultiValueMap<String, String> params = UriComponentsBuilder.fromHttpUrl(url).build().getQueryParams();<=
+=>		assertEquals("[b%20=]", params.get("foo").toString());<=
+=>		assertEquals("[f%20$]", params.get("bar").toString());<=
+=> 		AuthorizationRequest request = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com/path?foo=b%20%3D&bar=f%20$", null, null, Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		assertEquals("http://anywhere.com/path?foo=b%20%3D&bar=f%20$&code=thecode", ((RedirectView) result).getUrl());<=
+=> 		AuthorizationRequest request = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere?t=a%3Db%26ep%3Dtest%2540test.me", null, null, Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(Collections.singletonMap(OAuth2Utils.USER_OAUTH_APPROVAL, "true"), model,<=
+=>				sessionStatus, principal);<=
+=>		assertEquals("http://anywhere?t=a%3Db%26ep%3Dtest%2540test.me&code=thecode", ((RedirectView) result).getUrl());<=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		View result = endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal);<=
+=>		assertTrue("Wrong view: " + result, ((RedirectView) result).getUrl().startsWith("http://anywhere.com"));<=
+=> 		AuthorizationRequest request = getAuthorizationRequest("foo", "http://anywhere.com", null, null, Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=>		Map<String, String> approvalParameters = new HashMap<String, String>();<=
+=>		approvalParameters.put("user_oauth_approval", "false");<=
+=>		View result = endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal);<=
+=>		String url = ((RedirectView) result).getUrl();<=
+=>		assertTrue("Wrong view: " + result, url.startsWith("http://anywhere.com"));<=
+=>		assertTrue("Wrong view: " + result, url.contains("error=access_denied"));<=
+=> 				AUTHORIZATION_REQUEST_ATTR_NAME); <=
+=>		assertNull(authorizationRequest.getRequestParameters().get(OAuth2Utils.REDIRECT_URI));<=
+=>		assertEquals("http://anywhere.com", authorizationRequest.getRedirectUri());<=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, request); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(request)); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=>  <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedClientId() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setClientId("bar");		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedState() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setState("state-5678");		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedRedirectUri() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setRedirectUri("http://somewhere.com");		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedResponseTypes() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setResponseTypes(Collections.singleton("implicit"));		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=>		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal);<=
+=> 	} <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedScope() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setScope(Arrays.asList("read", "write"));		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedApproved() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		authorizationRequest.setApproved(false); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setApproved(true);		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedResourceIds() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setResourceIds(Collections.singleton("resource-other"));		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+=> 	} <=
+=>  <=
+=> 	@Test(expected = InvalidRequestException.class) <=
+=> 	public void testApproveWithModifiedAuthorities() throws Exception { <=
+=> 		AuthorizationRequest authorizationRequest = getAuthorizationRequest( <=
+=> 				"foo", "http://anywhere.com", "state-1234", "read", Collections.singleton("code")); <=
+=> 		model.put(AUTHORIZATION_REQUEST_ATTR_NAME, authorizationRequest); <=
+=> 		model.put(ORIGINAL_AUTHORIZATION_REQUEST_ATTR_NAME, endpoint.unmodifiableMap(authorizationRequest)); <=
+=> 		authorizationRequest.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("authority-other"));		// Modify authorization request <=
+=> 		Map<String, String> approvalParameters = new HashMap<String, String>(); <=
+=> 		approvalParameters.put("user_oauth_approval", "true"); <=
+=> 		endpoint.approveOrDeny(approvalParameters, model, sessionStatus, principal); <=
+should be empty:  []
